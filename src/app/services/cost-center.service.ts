@@ -1,18 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { user } from '@seniorsistemas/senior-platform-data';
-import { UserData } from '../entities/userdata.model';
 
-@Injectable()
-export class UserDataService {
+@Injectable({
+  providedIn: 'root'
+})
+export class CostCenterService {
 
   constructor(private http: HttpClient) { }
 
-  public getUserData(): Promise<UserData> {
+  public getJobPosition(): Promise<any[]> {
 
-    let baseUrl: string = 'https://api.senior.com.br/platform/user/queries/getUser';
+    let baseUrl: string = 'https://api.senior.com.br/hcm/organization_register/entities/costcenter';
 
-    let username: string;
 
     return user.getToken()
       .then((accessToken: any) => {
@@ -21,7 +21,12 @@ export class UserDataService {
           .set('Accept', 'application/json')
           .set('Authorization', accessToken.access_token)
 
-        return this.http.post(baseUrl, { 'username': username }, { 'headers': headers }).toPromise()
+        let params = new HttpParams()
+          .set('offset', '1')
+          .set('size', '10')
+
+        return this.http.get(baseUrl, {'headers': headers, 'params': params}).toPromise()
+        //return this.http.get(baseUrl, {'headers': headers}).toPromise()
           .then((res: any) => {
             return res
           })
