@@ -21,14 +21,14 @@ export class JobPositionService {
           .set('Accept', 'application/json')
           .set('Authorization', accessToken.access_token)
 
+          
         let params = new HttpParams()
-          .set('offset', '1')
-          .set('size', '10')
+          .set('size', '1000')
 
         return this.http.get(baseUrl, {'headers': headers, 'params': params}).toPromise()
         //return this.http.get(baseUrl, {'headers': headers}).toPromise()
           .then((res: any) => {
-            return res
+            return res.contents
           })
           .catch(err => {
             alert("Erro na tentativa de buscar dados do usuário: ")

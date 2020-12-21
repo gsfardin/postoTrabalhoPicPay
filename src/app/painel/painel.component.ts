@@ -46,9 +46,10 @@ export class PainelComponent implements OnInit {
     this.jobPositionService.getJobPosition()
       .then((jobPositions: any[]) => {
         this.jobPositions = jobPositions;
+        console.log(this.jobPositions)
       })
 
-    this.costCenterService.getJobPosition()
+    this.costCenterService.getCostCenter()
       .then((costCenters: any[]) => {
         this.costCenters = costCenters;
       })

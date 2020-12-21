@@ -23,7 +23,7 @@ export class CompanyService {
 
         return this.http.get(baseUrl, { 'headers': headers }).toPromise()
           .then((res: any) => {
-            return res
+            return res.contents
           })
           .catch(err => {
             alert("Erro na tentativa de buscar dados do usuário: ")

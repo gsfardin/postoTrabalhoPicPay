@@ -9,7 +9,7 @@ export class CostCenterService {
 
   constructor(private http: HttpClient) { }
 
-  public getJobPosition(): Promise<any[]> {
+  public getCostCenter(): Promise<any[]> {
 
     let baseUrl: string = 'https://api.senior.com.br/hcm/organization_register/entities/costcenter';
 
@@ -22,13 +22,12 @@ export class CostCenterService {
           .set('Authorization', accessToken.access_token)
 
         let params = new HttpParams()
-          .set('offset', '1')
-          .set('size', '10')
+          .set('size', '1000')
 
         return this.http.get(baseUrl, {'headers': headers, 'params': params}).toPromise()
         //return this.http.get(baseUrl, {'headers': headers}).toPromise()
           .then((res: any) => {
-            return res
+            return res.contents
           })
           .catch(err => {
             alert("Erro na tentativa de buscar dados do usuário: ")
