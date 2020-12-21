@@ -1,8 +1,8 @@
 export class UserData {
-    fullName: string
-    username: string
-    email: string
-    tenantDomain: string
-    tenantName: string
-    tenantLocale: string
+    public fullName: string
+    public username: string
+    public email: string
+    public tenantDomain: string
+    public tenantName: string
+    public tenantLocale: string
   }

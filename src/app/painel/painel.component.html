@@ -21,7 +21,9 @@
                 <div class="input-group mb-3">
                     <select class="form-control" id="formControlCompany">
                         <label for="formControlCompany">Example select</label>
-                            <option *ngFor="let company of companies" [value]="company.code">{{ company.companyname }}</option>
+                            <option *ngFor="let company of companies" [value]="company.code">
+                               {{ company.code }} - {{ company.companyname }}
+                            </option>
                     </select>
 
                     <!--
@@ -34,7 +36,7 @@
             <div class="col-sm-6">
                 <div>Posto de Trabalho</div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Informe o Posto de Trabalho">
+                    <input type="text" class="form-control" placeholder="Informe o Posto de Trabalho" [value]="newChartPosition">
                     <button class="btn btn-outline-secondary" type="button" id="btnPostoTrabalho"><img
                             [src]="urlImagem" /></button>
                 </div>
@@ -54,7 +56,9 @@
                 <div class="input-group mb-3">
                     <select class="form-control" id="formControlJobPosition">
                         <label for="formControlJobPosition">Example select</label>
-                            <option *ngFor="let jobPosition of jobPositions" [value]="jobPosition.code">{{ jobPosition.name }}</option>
+                            <option *ngFor="let jobPosition of jobPositions" [value]="jobPosition.code">
+                                {{ jobPosition.code }} - {{ jobPosition.name }}
+                            </option>
                     </select>
 
                     <!--
@@ -72,7 +76,8 @@
 
                     <select class="form-control" id="formControlCostCenter">
                         <label for="formControlCostCenter">Example select</label>
-                            <option *ngFor="let costCenter of costCenters" [value]="costCenter.code">{{ costCenter.name }}</option>
+                            <option *ngFor="let costCenter of costCenters" [value]="costCenter.code">
+                                {{costCenter.code}} - {{ costCenter.name }}</option>
                     </select>
 
                     <!--
@@ -85,9 +90,17 @@
             <div class="col-sm-6">
                 <div>Departamento</div>
                 <div class="input-group mb-3">
+                    <select class="form-control" id="formControlDepartment">
+                        <label for="formControlDepartment">Example select</label>
+                            <option *ngFor="let department of departments" [value]="department.code">
+                                {{department.code}} - {{ department.name }}</option>
+                    </select>
+
+                    <!--
                     <input type="text" class="form-control" placeholder="Informe o Departamento">
                     <button class="btn btn-outline-secondary" type="button" id="btnDepartamento"><img
                             [src]="urlImagem" /></button>
+                    -->
                 </div>
             </div>
         </div>

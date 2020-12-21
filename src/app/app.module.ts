@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompanyService } from './services/company.service';
 import { JobPositionService } from './services/job-position.service';
 import { CostCenterService } from './services/cost-center.service';
+import { DepartmentService } from './services/department.service';
+import { HistoricalEmploymentRelationshipService } from './services/hitstorical-employment-relationship';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CostCenterService } from './services/cost-center.service';
     UserDataService,
     CompanyService,
     JobPositionService,
-    CostCenterService
+    CostCenterService,
+    DepartmentService,
+    HistoricalEmploymentRelationshipService
   ],
   bootstrap: [AppComponent]
 })
