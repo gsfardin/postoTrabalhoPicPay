@@ -6,7 +6,11 @@ import { Company } from '../entities/company.model';
 import { JobPositionService } from '../services/job-position.service';
 import { CostCenterService } from '../services/cost-center.service';
 import { DepartmentService } from '../services/department.service';
-import { HistoricalEmploymentRelationship, HistoricalEmploymentRelationshipService } from '../services/hitstorical-employment-relationship';
+import { HistoricalEmploymentRelationshipService } from '../services/hitstorical-employment-relationship';
+import { GenericsService } from '../services/generics.service';
+import { formatDate } from '@angular/common';
+import { PersonActiveService } from '../services/person-active.service';
+import { SourceMapGenerator } from '@angular/compiler/src/output/source_map';
 
 @Component({
   selector: 'app-painel',
@@ -16,14 +20,15 @@ import { HistoricalEmploymentRelationship, HistoricalEmploymentRelationshipServi
 export class PainelComponent implements OnInit, OnChanges {
 
   public urlImagem: string;
-  public userData: UserData = new UserData();
   public newChartPosition: string = '';
 
+  public userData: UserData = new UserData();
   public companies: Company[];
   public jobPositions: any[];
   public costCenters: any[];
   public departments: any[];
   public historicalEmploymentRelationships: any[];
+  public generics: any[];
 
   constructor(
     public userDataService: UserDataService,
@@ -31,7 +36,9 @@ export class PainelComponent implements OnInit, OnChanges {
     public jobPositionService: JobPositionService,
     public costCenterService: CostCenterService,
     public departmentService: DepartmentService,
-    public historicalEmploymentRelationshipService: HistoricalEmploymentRelationshipService) { }
+    public historicalEmploymentRelationshipService: HistoricalEmploymentRelationshipService,
+    public personActiveService: PersonActiveService,
+    public genericsService: GenericsService) { }
 
   ngOnInit(): void {
 
@@ -44,6 +51,12 @@ export class PainelComponent implements OnInit, OnChanges {
         this.userData = userData
       })
 
+    // Generic rest api... Test  
+    this.personActiveService.getPersonActive()
+      .then((generic: any[]) => {
+        this.generics = generic;
+      })  
+ 
     // Carrega os dados das empresas
     this.companyService.getCompany()
       .then((companies: Company[]) => {
@@ -77,15 +90,27 @@ export class PainelComponent implements OnInit, OnChanges {
         this.departments.sort((a, b) => a.code - b.code)
       })
 
-      // TESTE PARA BUSCAR O HISTORICO DO COLABORADOR...
-      this.historicalEmploymentRelationshipService.getHistorical()
+    // TESTE PARA BUSCAR O HISTORICO DO COLABORADOR...
+    this.historicalEmploymentRelationshipService.getHistorical()
+      //this.historicalEmploymentRelationshipService.getHistorical()
       .then((historicalEmploymentRelationship: any[]) => {
         this.historicalEmploymentRelationships = historicalEmploymentRelationship;
 
         // Sort array by code
-        this.historicalEmploymentRelationships.sort((a, b) => a.code - b.code)
-        console.log(this.historicalEmploymentRelationships)
-      })  
+        //this.historicalEmploymentRelationships.sort((a, b) => a.employmentRelationship.code - b.employmentRelationship.code)
+
+        // Filter employee
+        //this.historicalEmploymentRelationships.filter((a) =>  a.employmentRelationship.code = 10)
+        //console.log(this.historicalEmploymentRelationships)
+      })
+
+    // Generic rest api... Test  
+    this.genericsService.getGenerics()
+      .then((generic: any[]) => {
+        this.generics = generic;
+      })
+    
+    
   }
 
   ngOnChanges(): void {

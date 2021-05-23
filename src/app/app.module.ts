@@ -11,6 +11,8 @@ import { JobPositionService } from './services/job-position.service';
 import { CostCenterService } from './services/cost-center.service';
 import { DepartmentService } from './services/department.service';
 import { HistoricalEmploymentRelationshipService } from './services/hitstorical-employment-relationship';
+import { GenericsService } from './services/generics.service';
+import { PersonActiveService } from './services/person-active.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HistoricalEmploymentRelationshipService } from './services/hitstorical-
     JobPositionService,
     CostCenterService,
     DepartmentService,
-    HistoricalEmploymentRelationshipService
+    HistoricalEmploymentRelationshipService,
+    PersonActiveService,
+    GenericsService
   ],
   bootstrap: [AppComponent]
 })
